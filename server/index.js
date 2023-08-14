@@ -6,6 +6,9 @@ const taskRoutes = require("./routes/task.routes.js")
 
 const app = express();
 
+// Procesamos json
+app.use(express.json());
+
 app.use(indexRoutes)
 app.use(taskRoutes)
 
