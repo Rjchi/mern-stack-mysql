@@ -32,8 +32,14 @@ const createTask = async (req, res) => {
   });
 };
 
-const updateTask = (req, res) => {
-  res.send("actualizando tareas");
+const updateTask = async (req, res) => {
+  const { title, description } = req.body;
+
+  const [result] = await pool.query("UPDATE tasks SET ? WHERE id = ?", [
+    req.body,
+    req.params.id,
+  ]);
+  res.json(result);
 };
 
 const deleteTask = async (req, res) => {
