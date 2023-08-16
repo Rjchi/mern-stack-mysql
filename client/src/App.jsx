@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { TaskContextProvider } from "./context/TaskContext";
 
 import Navbar from "./components/Navbar";
 
@@ -8,7 +9,7 @@ import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <>
+    <TaskContextProvider>
       <Navbar />
 
       <Routes>
@@ -16,7 +17,7 @@ function App() {
         <Route path="/new" element={<TaskForm />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </TaskContextProvider>
   );
 }
 
