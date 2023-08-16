@@ -15,7 +15,6 @@ const TaskForm = () => {
         onSubmit={async (values, actions) => {
           try {
             const response = await createTaskRequest(values);
-            console.log(response)
             actions.resetForm()
           } catch (error) {
             console.log(error);

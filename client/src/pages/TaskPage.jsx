@@ -14,14 +14,17 @@ const TaskPage = () => {
     loadTasks();
   }, []);
 
+  const renderMain = () => {
+    if (tasks.length === 0) {
+      return <h1>Loading...</h1>
+    }
+    return tasks.map((task) => <TaskCard key={task.id} task={task} />);
+  };
+
   return (
     <div>
       <h1>Tasks</h1>
-      {
-        tasks.map((task) => (
-          <TaskCard key={task.id} task={task} />
-        ))
-      }
+      {renderMain()}
     </div>
   );
 };
