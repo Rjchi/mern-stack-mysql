@@ -2,9 +2,10 @@ import { Form, Formik } from "formik";
 // Utilizamos una libreria para validar y crear formularios
 // Formik --> va a mantener el estado
 // Form --> es como tal el formulario
-import { createTaskRequest } from "../api/tasks.api";
+import { useTasks } from "../context/TaskContext";
 
 const TaskForm = () => {
+  const { createTask } = useTasks();
   return (
     <div>
       <Formik
@@ -13,12 +14,8 @@ const TaskForm = () => {
           description: "",
         }}
         onSubmit={async (values, actions) => {
-          try {
-            const response = await createTaskRequest(values);
-            actions.resetForm()
-          } catch (error) {
-            console.log(error);
-          }
+          createTask(values)
+          actions.resetForm()
         }}
       >
         {({ handleChange, handleSubmit, values, isSubmitting }) => (
