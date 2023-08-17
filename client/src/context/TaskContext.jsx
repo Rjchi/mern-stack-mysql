@@ -1,4 +1,10 @@
-import { getTaskRequest, deleteTaskRequest, createTaskRequest } from "../api/tasks.api";
+import {
+  getTaskRequest,
+  deleteTaskRequest,
+  createTaskRequest,
+  getTaskReques,
+  updateTaskRequest
+} from "../api/tasks.api";
 
 // Este componente es para manejar el estado de la aplicación
 import { createContext, useContext, useState } from "react";
@@ -17,25 +23,44 @@ export const TaskContextProvider = ({ children }) => {
   const deleteTask = async (id) => {
     try {
       await deleteTaskRequest(id);
-      setTasks(tasks.filter((task) => task.id !== id))
+      setTasks(tasks.filter((task) => task.id !== id));
     } catch (error) {
       console.log(error);
     }
   };
 
-  const createTask = async (task)  => {
+  const createTask = async (task) => {
     try {
       await createTaskRequest(task);
       // setTasks({...tasks, response.data});
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const updateTask = async (id, newFields) => {
+    try {
+      const response = await updateTaskRequest(id, newFields)
+    } catch (error) {
+      console.log(error)
+    }
   }
+
+  const getTask = async (id) => {
+    try {
+      const response = await getTaskReques(id);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // Exportamos:
   return (
-    <TaskContext.Provider value={{ tasks, loadTasks, deleteTask, createTask }}>
-      {children}
+    <TaskContext.Provider
+      value={{ tasks, loadTasks, deleteTask, createTask, getTask, updateTask }}
+    >
+      {children ?? children}
     </TaskContext.Provider>
   );
 };

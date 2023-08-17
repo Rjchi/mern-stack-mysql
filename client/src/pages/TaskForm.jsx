@@ -3,19 +3,50 @@ import { Form, Formik } from "formik";
 // Formik --> va a mantener el estado
 // Form --> es como tal el formulario
 import { useTasks } from "../context/TaskContext";
+import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const TaskForm = () => {
-  const { createTask } = useTasks();
+  const { createTask, getTask, updateTask } = useTasks();
+  const navigate = useNavigate();
+  const [task, setTask] = useState({
+    title: "",
+    description: "",
+  });
+  const { id } = useParams();
+
+  useEffect(() => {
+    const loadTask = async () => {
+      if (id) {
+        const response = await getTask(id);
+        setTask({
+          title: response.title,
+          description: response.description,
+        });
+      }
+    };
+    loadTask();
+  }, [id, getTask]);
+
   return (
     <div>
+      <h1>{id ? "Edit task" : "Create Task"}</h1>
       <Formik
-        initialValues={{
-          title: "",
-          description: "",
-        }}
+        initialValues={task}
+        enableReinitialize={true}
         onSubmit={async (values, actions) => {
-          createTask(values)
-          actions.resetForm()
+          if (id) {
+            await updateTask(id, values);
+            navigate("/")
+          } else {
+            await createTask(values);
+            // navigate("/")
+          }
+          actions.resetForm();
+          setTask({
+            title: "",
+            description: "",
+          });
         }}
       >
         {({ handleChange, handleSubmit, values, isSubmitting }) => (
