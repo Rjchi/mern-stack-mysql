@@ -9,16 +9,20 @@ import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <TaskContextProvider>
-      <Navbar />
+    <div className="bg-zinc-900">
+      <TaskContextProvider>
+        <Navbar />
 
-      <Routes>
-        <Route path="/" element={<TaskPage />} />
-        <Route path="/new" element={<TaskForm />} />
-        <Route path="/edit/:id" element={<TaskForm />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </TaskContextProvider>
+        <div className="container mx-auto">
+          <Routes>
+            <Route path="/" element={<TaskPage />} />
+            <Route path="/new" element={<TaskForm />} />
+            <Route path="/edit/:id" element={<TaskForm />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
+      </TaskContextProvider>
+    </div>
   );
 }
 

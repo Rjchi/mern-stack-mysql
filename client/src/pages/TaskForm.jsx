@@ -29,8 +29,8 @@ const TaskForm = () => {
   }, [id, getTask]);
 
   return (
-    <div>
-      <h1>{id ? "Edit task" : "Create Task"}</h1>
+    <div className="flex flex-col items-center justify-center py-11">
+      <h1 className="text-cyan-500">{id ? "Edit task" : "Create Task"}</h1>
       <Formik
         initialValues={task}
         enableReinitialize={true}
@@ -40,7 +40,7 @@ const TaskForm = () => {
             navigate("/")
           } else {
             await createTask(values);
-            // navigate("/")
+            navigate("/")
           }
           actions.resetForm();
           setTask({
@@ -50,9 +50,10 @@ const TaskForm = () => {
         }}
       >
         {({ handleChange, handleSubmit, values, isSubmitting }) => (
-          <Form onSubmit={handleSubmit}>
-            <label>title</label>
+          <Form className="bg-gradient-to-r from-sky-500 to-indigo-500 flex flex-col justify-center items-center p-6 gap-3 rounded-md shadow-md shadow-black hover:translate-y-6 ease-linear" onSubmit={handleSubmit}>
+            <label className="font-bold text-white">Title</label>
             <input
+              className="text-center rounded-md outline-none h-8 shadow-md shadow-black focus:bg-black focus:text-white"
               type="text"
               name="title"
               placeholder="title"
@@ -60,16 +61,16 @@ const TaskForm = () => {
               value={values.title}
             />
 
-            <label>Description</label>
+            <label className="font-bold text-white">Description</label>
             <textarea
+              className="text-center rounded-md outline-none h-16 w-72 shadow-md shadow-black focus:bg-black focus:text-white py-3"
               name="description"
               rows="3"
-              placeholder="description"
               onChange={handleChange}
               value={values.description}
             ></textarea>
 
-            <button type="submit" disabled={isSubmitting}>
+            <button className="bg-amber-50 rounded-2xl p-3 shadow-md shadow-black font-bold hover:bg-black transition ease-linear hover:text-white" type="submit" disabled={isSubmitting}>
               {isSubmitting ? "Saving..." : "save"}
             </button>
           </Form>
