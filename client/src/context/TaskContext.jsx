@@ -3,7 +3,8 @@ import {
   deleteTaskRequest,
   createTaskRequest,
   getTaskReques,
-  updateTaskRequest
+  updateTaskRequest,
+  toggleTaskDoneRequest
 } from "../api/tasks.api";
 
 // Este componente es para manejar el estado de la aplicación
@@ -40,11 +41,11 @@ export const TaskContextProvider = ({ children }) => {
 
   const updateTask = async (id, newFields) => {
     try {
-      const response = await updateTaskRequest(id, newFields)
+      await updateTaskRequest(id, newFields);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const getTask = async (id) => {
     try {
@@ -55,10 +56,27 @@ export const TaskContextProvider = ({ children }) => {
     }
   };
 
+  const toggleTaskDone = async (id) => {
+    try {
+      const taskFound = tasks.find((task) => task.id === id);
+      await toggleTaskDoneRequest(id, taskFound.done === 0 ? true : false);
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
   // Exportamos:
   return (
     <TaskContext.Provider
-      value={{ tasks, loadTasks, deleteTask, createTask, getTask, updateTask }}
+      value={{
+        tasks,
+        loadTasks,
+        deleteTask,
+        createTask,
+        getTask,
+        updateTask,
+        toggleTaskDone,
+      }}
     >
       {children ?? children}
     </TaskContext.Provider>
