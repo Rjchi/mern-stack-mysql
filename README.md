@@ -11,7 +11,7 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 - Table:
   CREATE TABLE tasks (
-  id int(11) NOT NULL,
+  id int(11) NOT NULL PRIMARY KEY,
   title varchar(200) NOT NULL,
   description varchar(300) DEFAULT NULL,
   done tinyint(1) NOT NULL DEFAULT 0,
