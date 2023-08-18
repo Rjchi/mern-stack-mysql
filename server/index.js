@@ -8,9 +8,7 @@ const taskRoutes = require("./routes/task.routes.js")
 
 const app = express();
 
-app.use(cors({
-    origin: "*"
-}))
+app.use(cors())
 
 // Procesamos json
 app.use(express.json());
