@@ -1,3 +1,19 @@
-const PORT = process.env.PORT || 5000;
+const { config } = require("dotenv");
 
-module.exports = PORT;
+config()
+
+const PORT = process.env.PORT || 5000;
+const DB_HOST = process.env.DB_HOST || "localhost";
+const DB_PORT = process.env.DB_PORT || '3306';
+const DB_USER = process.env.DB_USER || 'root';
+const DB_PASSWORD = process.env.DB_PASSWORD || "";
+const DB_DATABASE = process.env.DB_DATABASE || "mern";
+
+module.exports = {
+    PORT,
+    DB_HOST,
+    DB_PORT,
+    DB_USER,
+    DB_PASSWORD,
+    DB_DATABASE,
+};

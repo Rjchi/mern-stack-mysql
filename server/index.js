@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const { join } = require("path");
-const PORT = require("./config.js");
+const { PORT } = require("./config.js");
 // Rutas
 const indexRoutes = require("./routes/index.routes.js")
 const taskRoutes = require("./routes/task.routes.js")
