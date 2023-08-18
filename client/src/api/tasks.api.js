@@ -1,5 +1,5 @@
 import axios from "axios";
-// const API_URL = "https://mysqlrn.netlify.app";
+// const API_URL = "http://localhost:5000";
 const API_URL = process.env.REACT_APP_API;
 
 // Plural
