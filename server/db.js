@@ -7,6 +7,9 @@ const pool = createPool({
   password: DB_PASSWORD,
   port: DB_PORT,
   database: DB_DATABASE,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 // Con pool vamos a poder hacer las consultas a la base de datos
