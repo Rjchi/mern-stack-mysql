@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "https://stately-kheer-1bf538.netlify.app/";
+const API_URL = "https://stately-kheer-1bf538.netlify.app";
 
 // Plural
 export const getTaskRequest = async () =>
