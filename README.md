@@ -1,4 +1,4 @@
-# mern-stack-mysql
+# Mern-stack-mysql
 Crud utilizando el stack MERN con MSQL
 
 # React + Vite
