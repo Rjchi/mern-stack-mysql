@@ -1,5 +1,5 @@
 # Mern-Stack-Mysql
-Crud utilizando el Stack MERN con MSQL
+Crud utilizando el Stack MERN con MSQL.
 
 # React + Vite
 
